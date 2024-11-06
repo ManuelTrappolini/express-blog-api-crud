@@ -12,12 +12,6 @@ module.exports = [
         "brand": "LG"
     },
     {
-        "id": 3,
-        "product": "keyboard",
-        "price": 200,
-        "brand": "Razer"
-    },
-    {
         "id": 4,
         "product": "webcam",
         "price": 40,

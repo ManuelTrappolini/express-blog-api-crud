@@ -61,10 +61,29 @@ const update = (req, res) => {
     })
 }
 
+const destroy = (req,res) => {
+    const product = products.find(product => product.id === Number(req.params.id))
+    if (!product) {
+        return res.status(404).json({
+            error: `the product with id ${req.params.id} doesn't exist`
+        })
+    }
+    newProducts = products.filter(product => product.id !== Number(req.params.id))
+
+    fs.writeFileSync('./data/db.js', `module.exports = ${JSON.stringify(newProducts, null, 4)}`)
+    
+    return res.status(201).json({
+        status: 201,
+        data: newProducts,
+        counter : newProducts.length
+    })
+}
+
 module.exports = {
     index,
     show,
     store,
-    update
+    update,
+    destroy
 }
 
