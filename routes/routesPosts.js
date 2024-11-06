@@ -5,7 +5,7 @@ const postControllers = require('../Controllers/post.js')
 router.get('/', postControllers.index)
 router.post('/', postControllers.store)
 router.get('/:id', postControllers.show)
-router.patch('/:id', postControllers.update)
-
+router.put('/:id', postControllers.update)
+router.delete('/:id', postControllers.destroy)
 
 module.exports = router
