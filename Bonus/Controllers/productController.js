@@ -40,10 +40,31 @@ const store = (req, res) => {
     })
 }
 
+const update = (req, res) => {
+    const product = products.find(product => product.id === Number(req.params.id))
+
+    if (!product) {
+        return res.status(404).json({
+            error: `the product with id ${req.params.id} doesn't exist`
+        })
+    }
+
+        product.product = req.body.product,
+        product.price = req.body.price,
+        product.brand = req.body.brand,
+
+        fs.writeFileSync('./data/db.js', `module.exports = ${JSON.stringify(products, null, 4)}`)
+    return res.json({
+        status: 201,
+        data: products,
+        counter: products.length
+    })
+}
 
 module.exports = {
     index,
     show,
-    store
+    store,
+    update
 }
 
