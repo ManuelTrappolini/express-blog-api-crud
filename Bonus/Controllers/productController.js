@@ -1,4 +1,4 @@
-const products = require('../data/db')
+const products = require('../data/db.js')
 
 const index = (req,res) =>{
     res.json({
