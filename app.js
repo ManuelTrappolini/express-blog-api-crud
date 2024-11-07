@@ -20,3 +20,17 @@ app.use('/posts', router)
 app.use(logger)
 
 app.use(notFoundMiddleware)
+
+/* app.use('/posts', (error,req,res,next) =>{
+    throw new Error ('this is a custom error')
+})
+ */
+app.use((error,req,res,next) =>{
+    console.error(err.stack)
+
+    res.status(500).send({
+        status: 500,
+        message: 'You broke everything',
+        error: err.message
+    })
+})
